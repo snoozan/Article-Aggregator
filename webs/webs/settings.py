@@ -11,6 +11,7 @@ BOT_NAME = 'webs'
 SPIDER_MODULES = ['webs.spiders']
 NEWSPIDER_MODULE = 'webs.spiders'
 
+"""
 DATABASE = {'drivername': 'postgres',
         'host': 'localhost',
         'port': '5432',
@@ -20,3 +21,4 @@ DATABASE = {'drivername': 'postgres',
 ITEM_PIPELINES = ['webs.pipelines.WebsPipeline']
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'webs (+http://www.yourdomain.com)'
+"""

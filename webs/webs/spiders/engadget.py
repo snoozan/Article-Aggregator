@@ -11,12 +11,13 @@ class RedditSpider(Spider):
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
-        sites = hxs.select('/html/body/div[2]/div/div/article/a/@href')
+        sites = hxs.select('/html/body/div[2]/div/div/article/a')
         items = []
 
         for site in sites:
             item = WebsItem()
-            item['url'] = site.extract()
+            item['url'] = site.select('./@href').extract()
+            item['title'] = site.select('./text()').extract()
 
             items.append(item)
 

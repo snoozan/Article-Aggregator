@@ -28,5 +28,6 @@ class URLs(DeclarativeBase):
     __tablename__ = "urls"
 
     url = Column(String, primary_key=True)
+    title = Column(String)
 
 
