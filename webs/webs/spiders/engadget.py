@@ -10,13 +10,13 @@ class RedditSpider(Spider):
     start_urls = ["http://www.engadget.com/tag/Python/"]
 
     def parse(self, response):
-        sel.Selector(response)
+        sel = Selector(response)
         sites = sel.xpath('/html/body/div[2]/div/div/article')
         items = []
 
         for site in sites:
             item = WebsItem()
-            item['url'] = sel.xpath('./a/@href').extract()
+            item['url'] = site.xpath('./a/@href').extract()
 
             items.append(item)
 

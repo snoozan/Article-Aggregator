@@ -1,5 +1,5 @@
 from scrapy.spider import Spider
-from scrapy.selector import Selector
+from scrapy.selector import Selector, HtmlXPathSelector
 
 from webs.items import WebsItem
 
@@ -11,15 +11,15 @@ class HackerNewsSpider(Spider):
 
 
     def parse(self, response):
-        sel = Selector(response)
-        sites = sel.xpath('/html/body/center/table/tbody/tr[3]/td/table/tbody/tr/td[3]')
-        items = []
+        if 'news.ycombinator.com' in response.url:
+             hxs = HtmlXPathSelector(response)
+             sites = hxs.select('//td[@class="title"]//a/@href')
+             items = []
+             for site in sites:
+                 item = WebsItem()
+                 item['url'] = site.extract()
 
-        for site in sites:
-            item = WebsItem()
-            item['url'] = sel.xpath('./a/@href').extract()
+                 items.append(item)
 
-            items.append(item)
-
-        return items
+             return items
 

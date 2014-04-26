@@ -1,4 +1,5 @@
 from scrapy.spider import Spider
+from scrapy import log
 from scrapy.selector import Selector
 
 from webs.items import WebsItem
@@ -10,13 +11,14 @@ class RedditSpider(Spider):
 
     def parse(self, response):
         sel = Selector(response)
-        sites = sel.xpath('/html/body/div[3]/div[2]/div/div/div[2]')
+        sites = sel.xpath('//*[@id="siteTable"]/div/div[@class="entry unvoted"]')
         items = []
 
         for site in sites:
             item = WebsItem()
-            item['url'] = sel.xpath('./p/a/@href').extract()
+            item['url'] = site.xpath('.//p[@class="title"]/a/@href').extract()
 
             items.append(item)
+
 
         return items
