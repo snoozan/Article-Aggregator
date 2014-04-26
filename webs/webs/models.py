@@ -10,7 +10,7 @@ def db_connect():
     """
     return create_engine(URL(**settings.DATABASE))
 
-DeclarativeBase = declarative_base
+DeclarativeBase = declarative_base()
 
 def create_url_table(engine):
 
