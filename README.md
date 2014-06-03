@@ -1,6 +1,6 @@
-WomenInChapooting
+Article Aggregator
 =================
 
-Web scraper that does the scraping. Gets the ladies.
+Web scrapes various technical websites for articles pertaining to keywords.
 
 http://www.csh.rit.edu/~madison/bootstrap-3.1.1-dist/aggregator.html
